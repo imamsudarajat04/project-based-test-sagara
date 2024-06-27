@@ -25,7 +25,16 @@ class ProductsRepository implements ProductsRepositoryInterface
     // Create a new product
     public function store(array $data)
     {
-        return $this->model->create($data);
+        $tags = $data['tags'] ?? []; // Get tags from data
+        unset($data['tags']); // Remove tags from data
+
+        // Create the product
+        $product = $this->model->create($data);
+
+        // Attach tags to the product
+        $product->tags()->attach($tags);
+
+        return $product;
     }
 
     // Get the product
@@ -37,7 +46,19 @@ class ProductsRepository implements ProductsRepositoryInterface
     // Update a product
     public function update(array $data, $id)
     {
-        return $this->model->find($id)->update($data);
+        // find the product
+        $product = $this->model->findOrFail($id);
+
+        $tags = $data['tags'] ?? []; // Get tags from data
+        unset($data['tags']); // Remove tags from data
+
+        // Update the product
+        $product->update($data);
+
+        // Sync tags to the product
+        $product->tags()->sync($tags);
+
+        return $product;
     }
 
     // Delete a product

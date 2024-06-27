@@ -1,4 +1,4 @@
-<a class="btn btn-primary btn-circle" href="{!! route('services.edit', $model->id) !!}">
+<a class="btn btn-primary btn-circle" href="{!! route('products.edit', $model->id) !!}">
     <i class="fas fa-pencil-alt"></i>
 </a>
 <button class="btn btn-danger btn-circle" id="remove-btn" type="button" data-id="{!! $model->id !!}">

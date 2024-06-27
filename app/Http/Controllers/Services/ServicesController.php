@@ -60,7 +60,10 @@ class ServicesController extends Controller
      */
     public function create()
     {
+        // Get all tags
         $tags = Tags::all();
+
+        // Return the view
         return view('pages.services.create', compact('tags'));
     }
 

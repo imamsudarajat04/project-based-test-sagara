@@ -109,7 +109,7 @@
             },
         });
 
-        // Delete tag
+        // Delete service
         $(document).on('click', '#remove-btn', function () {
             let id = $(this).data('id');
             let token = $("meta[name='csrf-token']").attr("content");

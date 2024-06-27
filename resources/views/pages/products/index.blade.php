@@ -15,7 +15,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Products</h1>
-        <a href="{!! route('services.create') !!}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="{!! route('products.create') !!}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i>
             Create new product
         </a>
@@ -33,9 +33,11 @@
                                 <tr>
                                     <th width="70px">No</th>
                                     <th>Name Service</th>
-                                    <th>Description</th>
-                                    <th>Base Price</th>
+                                    <th>Quantity</th>
+                                    <th>Purchasing Price</th>
                                     <th>Selling Price</th>
+                                    <th>Description</th>
+                                    <th>Tags</th>
                                     <th width="150px">Action</th>
                                 </tr>
                             </thead>
@@ -75,30 +77,33 @@
                 },
                 {
                     data: 'name',
-                    name: 'name'
+                    name: 'name',
                 },
                 {
                     data: 'quantity',
-                    name: 'quantity'
+                    name: 'quantity',
                 },
                 {
                     data: 'purchasing_price',
-                    name: 'purchasing_price'
+                    name: 'purchasing_price',
+                    searchable: false,
                 },
                 {
                     data: 'selling_price',
-                    name: 'selling_price'
-                },
-                {
-                    data: 'tag_id',
-                    name: 'tag_id',
+                    name: 'selling_price',
                     searchable: false,
                 },
                 {
                     data: 'description',
-                    name: 'description'
+                    name: 'description',
                     orderable: false,
                     searchable: false,
+                },
+                {
+                    data: 'tags',
+                    name: 'tags',
+                    searchable: false,
+                    orderable: false,
                 },
                 {
                     data: 'action',
@@ -113,7 +118,7 @@
             },
         });
 
-        // Delete tag
+        // Delete Product
         $(document).on('click', '#remove-btn', function () {
             let id = $(this).data('id');
             let token = $("meta[name='csrf-token']").attr("content");
@@ -128,16 +133,16 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ url('services') }}" + '/' + id,
+                        url: "{{ url('products') }}" + '/' + id,
                         type: "POST",
                         data: {
                             '_method': 'DELETE',
                             '_token': token,
                         },
                         success: function (data) {
-                            $('#service' + id).remove();
-                            $('#tableServices').DataTable().ajax.reload();
-                            $('#tableServices').DataTable().draw();
+                            $('#product' + id).remove();
+                            $('#tableProducts').DataTable().ajax.reload();
+                            $('#tableProducts').DataTable().draw();
                             
                             Swal.fire(
                                 'Deleted!',
