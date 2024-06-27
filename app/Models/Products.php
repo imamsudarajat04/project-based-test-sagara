@@ -18,12 +18,11 @@ class Products extends Model
         'purchasing_price',
         'selling_price',
         'description',
-        'tag_id'
     ];
 
     public function tags()
     {
-        return $this->hasMany(Tags::class, 'tag_id', 'id');
+        return $this->belongsToMany(Tags::class, 'product_tag');
     }
 
     public function transactions()

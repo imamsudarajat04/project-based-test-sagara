@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Tags;
+use Illuminate\Support\Str;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,39 +14,20 @@ class tagsSeeder extends Seeder
      */
     public function run(): void
     {
-        Tags::create([
-            'name'        => 'Shoes',
-            'description' => 'Shoes description',
-        ]);
+        $tags = [
+            'Web Development',
+            'Mobile Development',
+            'UI/UX Design',
+            'SEO Optimization',
+            'Digital Marketing',
+            'Content Writing',
+        ];
 
-        Tags::create([
-            'name'        => 'Shirt',
-            'description' => 'Shirt description',
-        ]);
-
-        Tags::create([
-            'name'        => 'Pants',
-            'description' => 'Pants description',
-        ]);
-
-        Tags::create([
-            'name'        => 'Hat',
-            'description' => 'Hat description',
-        ]);
-
-        Tags::create([
-            'name'        => 'Socks',
-            'description' => 'Socks description',
-        ]);
-
-        Tags::create([
-            'name'        => 'Gloves',
-            'description' => 'Gloves description',
-        ]);
-
-        Tags::create([
-            'name'        => 'Jacket',
-            'description' => 'Jacket description',
-        ]);
+        foreach ($tags as $tag) {
+            Tags::create([
+                'name' => $tag,
+                'description' => "Description of $tag",
+            ]);
+        }
     }
 }

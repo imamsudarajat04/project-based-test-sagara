@@ -40,6 +40,13 @@
             <span>Services</span></a>
     </li>
 
+    <!-- Nav Item - Products -->
+    <li class="nav-item @yield('products')">
+        <a class="nav-link" href="{!! route('products.index') !!}">
+            <i class="fa fa-archive"></i>
+            <span>Products</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

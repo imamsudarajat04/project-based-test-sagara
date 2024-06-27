@@ -68,6 +68,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-12 control-label">Tags</label>
+                                <div class="col-12">
+                                    <select name="tags[]" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" multiple>
+                                        @foreach ($tags as $tag)
+                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('tags')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div>
                             <div class="row">
                                 <div class="col-12">

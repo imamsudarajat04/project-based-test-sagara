@@ -19,6 +19,11 @@ class Services extends Model
         'description'
     ];
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class, 'service_tag');
+    }
+
     public function transactions()
     {
         return $this->hasMany(Transactions::class, 'service_id', 'id');

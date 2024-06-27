@@ -19,13 +19,22 @@ class ServicesRepository implements ServicesRepositoryInterface
     // Get all services
     public function index()
     {
-        return $this->model->all();
+        return $this->model->with('tags')->get();
     }
 
     // Create a new service
     public function store(array $data)
     {
-        return $this->model->create($data);
+        $tags = $data['tags'] ?? []; // Get tags from data
+        unset($data['tags']); // Remove tags from data
+
+        // Create the service
+        $service = $this->model->create($data);
+
+        // Attach tags to the service
+        $service->tags()->attach($tags);
+
+        return $service;
     }
 
     // Get the service
@@ -37,7 +46,18 @@ class ServicesRepository implements ServicesRepositoryInterface
     // Update a service
     public function update(array $data, $id)
     {
-        return $this->model->find($id)->update($data);
+        $service = $this->model->findOrFail($id);
+
+        $tags = $data['tags'] ?? []; // Get tags from data
+        unset($data['tags']); // Remove tags from data
+
+        // Update the service
+        $service->update($data);
+
+        // Sync tags to the service
+        $service->tags()->sync($tags);
+
+        return $service;
     }
 
     // Delete a service

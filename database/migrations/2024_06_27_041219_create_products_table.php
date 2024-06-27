@@ -18,10 +18,6 @@ return new class extends Migration
             $table->decimal('purchasing_price', 15, 2);
             $table->decimal('selling_price', 15, 2);
             $table->longText('description')->nullable();
-            $table->foreignUuid('tag_id')
-                ->constrained('tags')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

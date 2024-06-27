@@ -18,8 +18,13 @@ class Tags extends Model
         'description'
     ];
 
+    public function services()
+    {
+        return $this->belongsToMany(Services::class, 'service_tag');
+    }
+
     public function products()
     {
-        return $this->belongsTo(Products::class, 'tag_id', 'id');
+        return $this->belongsToMany(Products::class, 'product_tag');
     }
 }

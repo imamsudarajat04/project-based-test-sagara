@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Services;
 
+use App\Models\Tags;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ServicesRepository;
@@ -42,7 +43,12 @@ class ServicesController extends Controller
                 ->editColumn('selling_price', function ($model) {
                     return 'Rp. '.number_format($model->selling_price, 0, ',', '.');
                 })
-                ->rawColumns(['action', 'base_price', 'selling_price'])
+                ->addColumn('tags', function ($model) {
+                    return $model->tags->map(function ($tag) {
+                    return '<span class="badge badge-pill badge-primary">' . $tag->name . '</span>';
+                    })->implode(' ');
+                })
+                ->rawColumns(['action', 'base_price', 'selling_price', 'tags'])
                 ->addIndexColumn()
                 ->make();
         }
@@ -54,7 +60,8 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        return view('pages.services.create');
+        $tags = Tags::all();
+        return view('pages.services.create', compact('tags'));
     }
 
     /**
@@ -68,6 +75,8 @@ class ServicesController extends Controller
             'base_price'    => 'required|numeric',
             'selling_price' => 'required|numeric',
             'description'   => 'required',
+            'tags'          => 'nullable|array',
+            'tags.*'        => 'nullable|exists:tags,id',
         ], [
             'name.required'          => 'The name field is required.',
             'base_price.required'    => 'The base price field is required.',
@@ -75,6 +84,7 @@ class ServicesController extends Controller
             'selling_price.required' => 'The selling price field is required.',
             'selling_price.numeric'  => 'The selling price field must be a number.',
             'description.required'   => 'The description field is required.',
+            'tags.array'             => 'The selected tag is invalid.',
         ]);
 
         // Store the service
@@ -93,7 +103,10 @@ class ServicesController extends Controller
         // Find the service
         $service = $this->servicesRepository->edit($id);
 
-        return view('pages.services.edit', compact('service'));
+        // Get all tags
+        $tags = Tags::all();
+
+        return view('pages.services.edit', compact('service', 'tags'));
     }
 
     /**
@@ -107,6 +120,8 @@ class ServicesController extends Controller
             'base_price'    => 'required|numeric',
             'selling_price' => 'required|numeric',
             'description'   => 'required',
+            'tags'          => 'nullable|array',
+            'tags.*'        => 'nullable|exists:tags,id',
         ], [
             'name.required'          => 'The name field is required.',
             'base_price.required'    => 'The base price field is required.',

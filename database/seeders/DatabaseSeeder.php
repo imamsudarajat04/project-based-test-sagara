@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             userSeeder::class,
             tagsSeeder::class,
             servicesSeeder::class,
+            productsSeeder::class,
         ]);
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.DashboardLayout')
 
-@section('title', 'Services')
-@section('services', 'active')
+@section('title', 'Products')
+@section('products', 'active')
 
 @push('custom-css')
     <!-- Custom styles for this page -->
@@ -14,10 +14,10 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Services</h1>
+        <h1 class="h3 mb-0 text-gray-800">Products</h1>
         <a href="{!! route('services.create') !!}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i>
-            Create new services
+            Create new product
         </a>
     </div>
 
@@ -28,7 +28,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered dt-responsive nowrap w-100 display" id="tableServices">
+                        <table class="table table-striped table-bordered dt-responsive nowrap w-100 display" id="tableProducts">
                             <thead>
                                 <tr>
                                     <th width="70px">No</th>
@@ -36,7 +36,6 @@
                                     <th>Description</th>
                                     <th>Base Price</th>
                                     <th>Selling Price</th>
-                                    <th>Tags</th>
                                     <th width="150px">Action</th>
                                 </tr>
                             </thead>
@@ -58,7 +57,7 @@
 
     <script>
         // DataTable
-        var tableServices = $('#tableServices').DataTable({
+        var tableProducts = $('#tableProducts').DataTable({
             processing: true,
             serverSide: true,
             ordering: true,
@@ -79,20 +78,25 @@
                     name: 'name'
                 },
                 {
-                    data: 'description',
-                    name: 'description'
+                    data: 'quantity',
+                    name: 'quantity'
                 },
                 {
-                    data: 'base_price',
-                    name: 'base_price'
+                    data: 'purchasing_price',
+                    name: 'purchasing_price'
                 },
                 {
                     data: 'selling_price',
                     name: 'selling_price'
                 },
                 {
-                    data: 'tags',
-                    name: 'tags',
+                    data: 'tag_id',
+                    name: 'tag_id',
+                    searchable: false,
+                },
+                {
+                    data: 'description',
+                    name: 'description'
                     orderable: false,
                     searchable: false,
                 },
@@ -105,7 +109,7 @@
             ],
             sDom: '<"secondBar d-flex flex-w1rap justify-content-between mb-2";f>rt<"bottom"p>',
             "fnCreatedRow": function(nRow, data) {
-                $(nRow).attr('id', 'service' + data.id);
+                $(nRow).attr('id', 'product' + data.id);
             },
         });
 
