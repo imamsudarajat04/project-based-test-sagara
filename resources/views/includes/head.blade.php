@@ -4,6 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>@yield('title', 'Dashboard')</title>
 
     <!-- Custom fonts for this template-->
@@ -14,5 +17,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{!! asset('css/sb-admin-2.min.css') !!}" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    @stack('custom-css')
 
 </head>

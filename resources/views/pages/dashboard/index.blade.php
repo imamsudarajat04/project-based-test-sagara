@@ -1,5 +1,7 @@
 @extends('layouts.DashboardLayout')
 
+@section('dashboard', 'active')
+
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
