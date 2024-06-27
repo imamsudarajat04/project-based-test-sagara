@@ -15,8 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->integer('quantity');
-            $table->decimal('purchasing_price', 10, 2);
-            $table->decimal('selling_price', 10, 2);
+            $table->decimal('purchasing_price', 15, 2);
+            $table->decimal('selling_price', 15, 2);
             $table->longText('description')->nullable();
             $table->foreignUuid('tag_id')
                 ->constrained('tags')

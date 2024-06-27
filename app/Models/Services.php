@@ -15,7 +15,8 @@ class Services extends Model
     protected $fillable = [
         'name',
         'base_price',
-        'selling_price'
+        'selling_price',
+        'description'
     ];
 
     public function transactions()

@@ -16,17 +16,19 @@ return new class extends Migration
             $table->foreignUuid('product_id')
                 ->constrained('products')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->cascadeOnDelete()
+                ->nullable();
             $table->foreignUuid('service_id')
                 ->constrained('services')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->cascadeOnDelete()
+                ->nullable();
             $table->foreignUuid('user_id')
                 ->constrained('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->integer('quantity');
-            $table->decimal('total', 10, 2);
+            $table->decimal('total', 15, 2);
             $table->enum('status', ['pending', 'completed', 'cancelled'])->default('pending');
             $table->softDeletes();
             $table->timestamps();

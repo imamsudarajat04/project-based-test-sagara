@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->decimal('base_price', 10, 2);
-            $table->decimal('selling_price', 10, 2);
+            $table->decimal('base_price', 15, 2);
+            $table->decimal('selling_price', 15, 2);
+            $table->text('description');
             $table->timestamps();
         });
     }

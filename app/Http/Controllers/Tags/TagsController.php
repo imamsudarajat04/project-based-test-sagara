@@ -10,7 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TagsController extends Controller
 {
-    /*8
+    /**
      * The repository instance.
      */
     protected $tagsRepository;
@@ -68,14 +68,6 @@ class TagsController extends Controller
         // Alert
         Alert::success('Success', 'Tag created successfully');
         return redirect()->route('tags.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

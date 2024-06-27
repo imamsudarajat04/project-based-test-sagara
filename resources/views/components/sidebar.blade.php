@@ -33,6 +33,13 @@
             <span>Tags</span></a>
     </li>
 
+    <!-- Nav Item - Services -->
+    <li class="nav-item @yield('services')">
+        <a class="nav-link" href="{!! route('services.index') !!}">
+            <i class="fa fa-list-ul"></i>
+            <span>Services</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
