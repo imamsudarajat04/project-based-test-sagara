@@ -54,6 +54,20 @@
             <span>Transactions</span></a>
     </li>
 
+    <!-- Nav Item - Products -->
+    <li class="nav-item @yield('import')">
+        <a class="nav-link" href="{!! route('import') !!}">
+            <i class="fa fa-upload"></i>
+            <span>Import</span></a>
+    </li>
+
+    <!-- Nav Item - Products -->
+    <li class="nav-item @yield('importLogs')">
+        <a class="nav-link" href="{!! route('import.logs') !!}">
+            <i class="fa fa-upload"></i>
+            <span>Import Logs</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
