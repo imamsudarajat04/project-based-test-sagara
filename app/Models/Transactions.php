@@ -17,6 +17,7 @@ class Transactions extends Model
         'product_id',
         'service_id',
         'user_id',
+        'customer_name',
         'quantity',
         'total',
         'status'

@@ -27,6 +27,7 @@ return new class extends Migration
                 ->constrained('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->string('customer_name');
             $table->integer('quantity');
             $table->decimal('total', 15, 2);
             $table->enum('status', ['pending', 'completed', 'cancelled'])->default('pending');

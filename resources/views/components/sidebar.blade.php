@@ -47,6 +47,13 @@
             <span>Products</span></a>
     </li>
 
+    <!-- Nav Item - Products -->
+    <li class="nav-item @yield('transactions')">
+        <a class="nav-link" href="{!! route('transactions.index') !!}">
+            <i class="fa fa-shopping-cart"></i>
+            <span>Transactions</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
